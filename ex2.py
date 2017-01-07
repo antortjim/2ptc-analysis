@@ -1,5 +1,5 @@
-from Bio.PDB.Vector import calc_dihedral
-from pandas import *
+from modules import calc_dihedral
+from modules import DataFrame
 
 ## ex2
 def calc_phi(res0, res1):

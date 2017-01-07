@@ -19,7 +19,7 @@ def is_close(res1, res2, distance, n):
                 return True
 
 
-def analyze_residues(fun, *args):
+def analyze_residues(chain1, chain2, fun, *args):
     '''Analyze pairs of residues and output only those 
        that return True when passed to function fun with arguments **args'''
 
@@ -30,11 +30,11 @@ def analyze_residues(fun, *args):
     
     
     # Iterate over residues on enzyme
-    for res1 in e.get_residues():
+    for res1 in chain1.get_residues():
         # Iterate over residues on inhibitor 
-        for res2 in i.get_residues():
+        for res2 in chain2.get_residues():
             # Compare atoms on both residues and count how many are closer than 3.5
-            if fun(res1, res2, args):
+            if fun(res1, res2, *args):
                # Save names
                name1 = res1.get_resname()
                name2 = res2.get_resname()
