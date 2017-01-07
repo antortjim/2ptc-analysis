@@ -1,7 +1,8 @@
-# Import exercise functions
-
+# Import modules needed in this script
 from modules import PDB
 from modules import np
+
+# Import functions defined by user
 from ex1 import *
 from ex2 import *
 from ex3 import *
@@ -24,25 +25,22 @@ pairs, pairs_id = analyze_residues(e, i, is_close, 3.5, 2)
 print pairs
 
 # ex2
+# Compute the angles
 e_psi, e_phi = compute_angles(e)
 i_psi, i_phi = compute_angles(i)
 
+## Generate Pandas DataFrame and export to csv for R visualization
 e_pairs = range(1, len(e_psi) + 1)
 i_pairs = range(1, len(i_psi) + 1)
-
 
 e = np.repeat(e_pairs, 2, axis = 0)
 i = np.repeat(i_pairs, 2, axis = 0)
 
 pairs = e.tolist() * 2 + i.tolist() * 2
-
 table = [pairs,  ["E"] * len(e_psi + e_phi) + ["I"] * len(i_psi + i_phi), ["psi"] * len(e_psi) + ["phi"] * len(e_phi) + ["psi"] * len(i_psi) + ["phi"] * len(i_phi), e_psi + e_phi + i_psi + i_phi]
 header = ['pair_id', 'chain', 'angle', 'value']
 
-
-## Generate Pandas DataFrame and export to csv for R visualization
 df = table_to_df(table, header)
-
 df.to_csv("2ptc.csv")
 
 # ex3
