@@ -1,3 +1,5 @@
+from modules import PDB
+
 # ex1
 #Find all residue pairs in both proteins that have
 #more than 2 atoms closer then 3.5 A from each
